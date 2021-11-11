@@ -134,6 +134,7 @@ api27hack       #only here for completeness
 api28hack       #only on 9.0+ we also include Actions Services, AndroidPlatformServices, Data Transfer Tool, Markup, Sounds
 api29hack       #only on 10.0+ we also include Actions Services with Pixel Launcher and TrichromeLibrary with Chrome and Webview
 api30hack       #only on 11.0+ we also include Actions Services with Pixel Launcher and TrichromeLibrary with Chrome and Webview
+api31hack       #placeholder only on 12.0+
 buildtarget
 alignbuild
 commonscripts
