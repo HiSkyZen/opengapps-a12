@@ -77,6 +77,7 @@ case "$API" in
 29) PLATFORM="10.0" ;;
 30) PLATFORM="11.0" ;;
 31) PLATFORM="12.0" ;;
+32) PLATFORM="12.1" ;;
 *)
   echo "ERROR: Unknown API version! Aborting..."
   exit 1
@@ -134,7 +135,8 @@ api27hack       #only here for completeness
 api28hack       #only on 9.0+ we also include Actions Services, AndroidPlatformServices, Data Transfer Tool, Markup, Sounds
 api29hack       #only on 10.0+ we also include Actions Services with Pixel Launcher and TrichromeLibrary with Chrome and Webview
 api30hack       #only on 11.0+ we also include Actions Services with Pixel Launcher and TrichromeLibrary with Chrome and Webview
-api31hack       #placeholder only on 12.0+
+api31hack       #placeholder only on 12.0
+api32hack       #placeholder only on 12.1
 buildtarget
 alignbuild
 commonscripts
