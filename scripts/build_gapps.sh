@@ -24,13 +24,14 @@ if [ -n "$OPENGAPPSDATE" ]; then
 else
   DATE=$(date +"%Y%m%d")
 fi
-TOP=$(cd "${0%/*}"/.. && pwd -P) || exit 1
+a="/$0"; a=${a%/*}; a=${a#/}; a=${a:-.}; TOP=$(cd "$a/.."; pwd -P) || exit 1
 ARCH="$1"
 API="$2"
 VARIANT="$3"
 BUILD="$TOP/build"
 CACHE="$TOP/cache"
 SOURCES="$TOP/sources"
+GO_DIR_SUFFIX="-go"
 SCRIPTS="$TOP/scripts"
 CERTIFICATES="$SCRIPTS/certificates"
 #CERTIFICATEFILE=""  # this can be set to a filepath to use as certificate file for signing
@@ -76,7 +77,8 @@ case "$API" in
 28) PLATFORM="9.0" ;;
 29) PLATFORM="10.0" ;;
 30) PLATFORM="11.0" ;;
-31) PLATFORM="12.0" ;;
+31) PLATFORM="12" ;;
+32) PLATFORM="12L" ;;
 *)
   echo "ERROR: Unknown API version! Aborting..."
   exit 1
@@ -96,6 +98,17 @@ if [ -z "$SUPPORTEDVARIANTS" ]; then
   echo "ERROR: Unknown variant! aborting..."
   exit 1
 fi
+
+case "$VARIANT" in
+*_go)
+    if [ "$API" -lt "27" ]; then
+        echo "ERROR! Go edition cannot be built on API level $API. Go edition appeared with API 27.
+More info here: https://developer.android.com/docs/quality-guidelines/build-for-billions/device-capacity#androidgo"
+        exit 1
+    fi
+    ;;
+esac
+
 if [ "$ARCH" != "arm" ] && [ "$ARCH" != "arm64" ]; then #For all non-arm(64) platforms
   case "$VARIANT" in
   aroma)
@@ -134,6 +147,9 @@ api27hack       #only here for completeness
 api28hack       #only on 9.0+ we also include Actions Services, AndroidPlatformServices, Data Transfer Tool, Markup, Sounds
 api29hack       #only on 10.0+ we also include Actions Services with Pixel Launcher and TrichromeLibrary with Chrome and Webview
 api30hack       #only on 11.0+ we also include Actions Services with Pixel Launcher and TrichromeLibrary with Chrome and Webview
+api31hack       #only on 12 - Don't Panic
+api32hack       #only on 12L - Don't Panic
+gohack          #Create go variants based on the non-go variants
 buildtarget
 alignbuild
 commonscripts
