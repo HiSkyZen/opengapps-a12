@@ -696,17 +696,19 @@ quickaccesswallet" # Include QuickAccessWallet with Android 11.0 for Pixel Launc
   fi
 }
 
-# api31hack(){
-#   if [ "$API" -eq "31" ]; then
-#     echo Nothing extra yet
-#   fi
-# }
+api31hack(){
+  if [ "$API" -eq "31" ]; then
+    continue # Nothing to add yet.
+  fi
+}
 
-# api32hack(){
-#   if [ "$API" -eq "32" ]; then
-#     echo Nothing extra yet
-#   fi
-# }
+api32hack(){
+  if [ "$API" -eq "32" ]; then
+    continue # Nothing to add yet.
+  fi
+}
+
+
 
 sdkversionhacks(){
   case "$package" in
