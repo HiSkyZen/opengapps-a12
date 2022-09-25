@@ -722,6 +722,8 @@ trichromelibrary"
     fi
     gappsmicro="$gappsmicro
 actionsservices" # Include Actions Services with Android 10.0 for Pixel Launcher to work
+  gappssuper="$gappssuper
+files"
   fi
 }
 
@@ -830,21 +832,22 @@ youtubego"
 files"
     gappsfull_go=$(sed -e "s/\bkeep\b//" <<< $gappsfull_go)
 
-    gappssuper="$gappssuper
-gmscorego
-assistantgo
-duogo
-gallerygo
-gmailgo
-keyboardgooglego
-mapsgo
-navgo
-searchgo
-youtubego
-cameragooglego
-dialergooglego
-messengergo
-files
-"
+# Super doesn't need go-version apps.
+#    gappssuper="$gappssuper
+#gmscorego
+#assistantgo
+#duogo
+#gallerygo
+#gmailgo
+#keyboardgooglego
+#mapsgo
+#navgo
+#searchgo
+#youtubego
+#cameragooglego
+#dialergooglego
+#messengergo
+#files
+#"
   fi
 }
